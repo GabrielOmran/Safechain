@@ -655,7 +655,39 @@ html, body { max-width:100%; overflow-x:hidden !important; }
   }
 }
 </style>
-</head>
+<style id="mobile-nav-stacked-final">
+@media (max-width: 600px) {
+  .top-nav-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+  .top-nav .nav-brand {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin-bottom: 10px !important;
+  }
+  .top-nav .nav-right {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+  .top-nav .nav-tabs {
+    order: 1 !important;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .top-nav .lang-selector {
+    order: 2 !important;
+    align-self: center !important;
+    margin-top: 8px !important;
+  }
+}
+</style></head>
 <body>
 
     <!-- ===== Top Navigation Bar ===== -->
