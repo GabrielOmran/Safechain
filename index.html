@@ -687,7 +687,60 @@ html, body { max-width:100%; overflow-x:hidden !important; }
     margin-top: 8px !important;
   }
 }
-</style></head>
+</style>
+<style id="mobile-final-vertical-flow">
+@media (max-width: 600px) {
+  .top-nav-inner {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .nav-brand { order:1 !important; width:100% !important; }
+  .nav-right {
+    order:2 !important;
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    gap:.55rem !important;
+  }
+  .nav-tabs {
+    order:1 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .lang-selector {
+    order:2 !important;
+    align-self:center !important;
+    margin:0 auto !important;
+  }
+  .page-view {
+    display:none !important;
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    clear:both !important;
+  }
+  .page-view.active {
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  .app-container, .hazard-container, .downloadables-container {
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    box-sizing:border-box !important;
+  }
+}
+</style>
+</head>
 <body>
 
     <!-- ===== Top Navigation Bar ===== -->
