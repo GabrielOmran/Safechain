@@ -585,6 +585,76 @@ html, body { max-width:100%; overflow-x:hidden !important; }
   line-height:1.65 !important;
 }
 </style>
+
+<style id="mobile-header-no-overlap">
+@media (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
+  body { padding:0 8px 16px !important; }
+  .top-nav {
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:100% !important;
+    margin:0 -8px 16px !important;
+    width:calc(100% + 16px) !important;
+    z-index:1000 !important;
+  }
+  .top-nav-inner {
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.55rem .6rem .7rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.5rem !important;
+  }
+  .nav-brand {
+    width:100% !important;
+    justify-content:center !important;
+    min-height:28px !important;
+  }
+  .nav-right {
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.45rem !important;
+  }
+  .nav-tabs {
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:.2rem !important;
+    padding:.2rem !important;
+  }
+  .nav-tab {
+    min-width:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.45rem .12rem !important;
+    font-size:.68rem !important;
+    line-height:1.2 !important;
+    white-space:normal !important;
+    text-align:center !important;
+    justify-content:center !important;
+  }
+  .lang-selector {
+    align-self:center !important;
+    max-width:100% !important;
+  }
+  .page-view,
+  .app-container, .hazard-container, .downloadables-container {
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .app-header, .hazard-header, .downloadables-header {
+    box-sizing:border-box !important;
+    margin-top:0 !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -1903,7 +1973,77 @@ html, body { max-width:100%; overflow-x:hidden !important; }
             const footerBrand=isRtl?'Safechain HACCP · مستندات سلامة الغذاء':isZh?'Safechain HACCP · 食品安全文件':lang==='pl'?'Safechain HACCP · Dokumentacja bezpieczeństwa żywności':lang==='es'?'Safechain HACCP · Documentación de seguridad alimentaria':lang==='fr'?'Safechain HACCP · Documentation de sécurité alimentaire':lang==='de'?'Safechain HACCP · Lebensmittelsicherheitsdokumentation':'Safechain HACCP · Food Safety Documentation';
             const fontImport=isRtl?'<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">':isZh?'<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">':'';
             return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40" dir="${dir}"><head><meta charset="utf-8"><title>${escapeHtml(template.title)}</title>${fontImport}<style>
-@page{size:A4;margin:0}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}body{font-family:${font};font-size:10pt;color:#1d3b2f;direction:${dir};line-height:${isRtl?'1.65':'1.4'};padding:42pt 42pt 36pt;max-width:794px;margin:0 auto}h1,h2,p,table{font-family:${font}}.header-bar{background:#1d3b2f;color:#fff;padding:11pt 13pt;border-bottom:4pt solid #f5b342;margin:0 0 11pt;text-align:${align};width:100%;overflow:hidden}.header-bar h1{color:#f5b342;font-size:16pt;line-height:1.55;margin:0 0 6pt;font-weight:bold;overflow-wrap:normal;word-break:normal;white-space:normal;letter-spacing:normal;word-spacing:normal}.header-bar .sub{color:#fff;font-size:10pt;line-height:1.65;margin:0;overflow-wrap:normal;word-break:normal;white-space:normal;letter-spacing:normal;word-spacing:normal}.facility-line{font-size:10pt;color:#fff;margin:5pt 0 0;line-height:1.45;overflow-wrap:anywhere}h2{font-size:12pt;color:#1d3b2f;border-bottom:2pt solid #f5b342;padding:0 0 4pt;margin:12pt 0 6pt;line-height:1.35;overflow-wrap:anywhere}.body-text{font-size:10pt;line-height:${isRtl?'1.75':'1.45'};margin:0 0 7pt;overflow-wrap:anywhere}.form-table,.data-table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:${font};font-size:10pt;margin:0 0 8pt;direction:${dir}}.form-table td,.data-table td,.data-table th{border:1pt solid #c9d4dc;padding:5pt 5pt;line-height:${isRtl?'1.55':'1.35'};vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;white-space:normal}.form-table .field-label{background:#f7fafc;font-weight:bold;color:#1f4052;width:35%}.data-table th{background:#1d3b2f;color:#f5b342;border-color:#1d3b2f;font-weight:bold;text-align:${align}}.data-table td{text-align:${align}}tr{page-break-inside:avoid;min-height:30pt} .form-table td{min-height:34pt;height:34pt} .data-table td{min-height:30pt;height:30pt} .data-table th{min-height:34pt;height:34pt} thead{display:table-header-group}.footer{margin-top:12pt;padding-top:6pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;line-height:1.3;overflow-wrap:anywhere}</style></head><body><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${body}<div class="footer">Safechain HACCP · ${generated}</div></body></html>`;
+@page{size:A4;margin:0}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}body{font-family:${font};font-size:10pt;color:#1d3b2f;direction:${dir};line-height:${isRtl?'1.65':'1.4'};padding:42pt 42pt 36pt;max-width:794px;margin:0 auto}h1,h2,p,table{font-family:${font}}.header-bar{background:#1d3b2f;color:#fff;padding:11pt 13pt;border-bottom:4pt solid #f5b342;margin:0 0 11pt;text-align:${align};width:100%;overflow:hidden}.header-bar h1{color:#f5b342;font-size:16pt;line-height:1.55;margin:0 0 6pt;font-weight:bold;overflow-wrap:normal;word-break:normal;white-space:normal;letter-spacing:normal;word-spacing:normal}.header-bar .sub{color:#fff;font-size:10pt;line-height:1.65;margin:0;overflow-wrap:normal;word-break:normal;white-space:normal;letter-spacing:normal;word-spacing:normal}.facility-line{font-size:10pt;color:#fff;margin:5pt 0 0;line-height:1.45;overflow-wrap:anywhere}h2{font-size:12pt;color:#1d3b2f;border-bottom:2pt solid #f5b342;padding:0 0 4pt;margin:12pt 0 6pt;line-height:1.35;overflow-wrap:anywhere}.body-text{font-size:10pt;line-height:${isRtl?'1.75':'1.45'};margin:0 0 7pt;overflow-wrap:anywhere}.form-table,.data-table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:${font};font-size:10pt;margin:0 0 8pt;direction:${dir}}.form-table td,.data-table td,.data-table th{border:1pt solid #c9d4dc;padding:5pt 5pt;line-height:${isRtl?'1.55':'1.35'};vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;white-space:normal}.form-table .field-label{background:#f7fafc;font-weight:bold;color:#1f4052;width:35%}.data-table th{background:#1d3b2f;color:#f5b342;border-color:#1d3b2f;font-weight:bold;text-align:${align}}.data-table td{text-align:${align}}tr{page-break-inside:avoid;min-height:30pt} .form-table td{min-height:34pt;height:34pt} .data-table td{min-height:30pt;height:30pt} .data-table th{min-height:34pt;height:34pt} thead{display:table-header-group}.footer{margin-top:12pt;padding-top:6pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;line-height:1.3;overflow-wrap:anywhere}</style>
+<style id="mobile-header-no-overlap">
+@media (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
+  body { padding:0 8px 16px !important; }
+  .top-nav {
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:100% !important;
+    margin:0 -8px 16px !important;
+    width:calc(100% + 16px) !important;
+    z-index:1000 !important;
+  }
+  .top-nav-inner {
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.55rem .6rem .7rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.5rem !important;
+  }
+  .nav-brand {
+    width:100% !important;
+    justify-content:center !important;
+    min-height:28px !important;
+  }
+  .nav-right {
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.45rem !important;
+  }
+  .nav-tabs {
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:.2rem !important;
+    padding:.2rem !important;
+  }
+  .nav-tab {
+    min-width:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.45rem .12rem !important;
+    font-size:.68rem !important;
+    line-height:1.2 !important;
+    white-space:normal !important;
+    text-align:center !important;
+    justify-content:center !important;
+  }
+  .lang-selector {
+    align-self:center !important;
+    max-width:100% !important;
+  }
+  .page-view,
+  .app-container, .hazard-container, .downloadables-container {
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .app-header, .hazard-header, .downloadables-header {
+    box-sizing:border-box !important;
+    margin-top:0 !important;
+  }
+}
+</style>
+</head><body><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${body}<div class="footer">Safechain HACCP · ${generated}</div></body></html>`;
         }
 
         // ====== PDF VIA HTML2CANVAS ======
@@ -2157,7 +2297,77 @@ html, body { max-width:100%; overflow-x:hidden !important; }
                     }
                 });
                 const generatedLabel = isRtl ? 'وثيقة مُنشأة' : (lang === 'pl' ? 'Wygenerowany dokument' : lang === 'es' ? 'Documento generado' : lang === 'fr' ? 'Document généré' : lang === 'de' ? 'Generiertes Dokument' : 'Generated document');
-                const pdfHtml = `<!DOCTYPE html><html dir="${dir}"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"><style>@page { size: A4 portrait; margin: 1.8cm 1.6cm; } * { box-sizing: border-box; } body { font-family: ${fontFamily}; font-size: 10pt; color: #1d3b2f; direction: ${dir}; margin: 0; padding: 0; background: white; line-height: ${isRtl ? '1.8' : '1.4'}; } .export-document.rtl td,.export-document.rtl th{word-break:break-word;overflow-wrap:anywhere;line-height:1.8;letter-spacing:0;word-spacing:normal;font-family:'Cairo',sans-serif;font-size:10pt}.export-document.rtl table{table-layout:fixed} .header-bar { background: #1d3b2f; color: #ffffff; padding: 12pt 15pt; border-bottom: 4pt solid #f5b342; margin-bottom: 14pt; text-align: ${textAlign}; } .header-bar h1 { color: #f5b342; font-size: 16pt; line-height: 1.55; margin: 0 0 7pt 0; font-weight: bold; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .header-bar .sub { color: #ffffff; font-size: 10pt; line-height: 1.6; margin: 0; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .footer { margin-top: 14pt; padding-top: 6pt; border-top: 1pt solid #e6edf4; text-align: center; color: #7a94a8; font-size: 8pt; }</style></head><body class="export-document ${isRtl ? "rtl" : ""} ${isZh ? "zh" : ""}"><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${bodyHtml}<div class="footer"><span class="export-brand"><span class="export-brand-mark">S</span> Safechain HACCP</span> · ${isRtl ? 'HACCP لسلامة الغذاء' : 'HACCP Food Safety'} · ${generatedLabel}</div></body></html>`;
+                const pdfHtml = `<!DOCTYPE html><html dir="${dir}"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"><style>@page { size: A4 portrait; margin: 1.8cm 1.6cm; } * { box-sizing: border-box; } body { font-family: ${fontFamily}; font-size: 10pt; color: #1d3b2f; direction: ${dir}; margin: 0; padding: 0; background: white; line-height: ${isRtl ? '1.8' : '1.4'}; } .export-document.rtl td,.export-document.rtl th{word-break:break-word;overflow-wrap:anywhere;line-height:1.8;letter-spacing:0;word-spacing:normal;font-family:'Cairo',sans-serif;font-size:10pt}.export-document.rtl table{table-layout:fixed} .header-bar { background: #1d3b2f; color: #ffffff; padding: 12pt 15pt; border-bottom: 4pt solid #f5b342; margin-bottom: 14pt; text-align: ${textAlign}; } .header-bar h1 { color: #f5b342; font-size: 16pt; line-height: 1.55; margin: 0 0 7pt 0; font-weight: bold; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .header-bar .sub { color: #ffffff; font-size: 10pt; line-height: 1.6; margin: 0; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .footer { margin-top: 14pt; padding-top: 6pt; border-top: 1pt solid #e6edf4; text-align: center; color: #7a94a8; font-size: 8pt; }</style>
+<style id="mobile-header-no-overlap">
+@media (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
+  body { padding:0 8px 16px !important; }
+  .top-nav {
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:100% !important;
+    margin:0 -8px 16px !important;
+    width:calc(100% + 16px) !important;
+    z-index:1000 !important;
+  }
+  .top-nav-inner {
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.55rem .6rem .7rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.5rem !important;
+  }
+  .nav-brand {
+    width:100% !important;
+    justify-content:center !important;
+    min-height:28px !important;
+  }
+  .nav-right {
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.45rem !important;
+  }
+  .nav-tabs {
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:.2rem !important;
+    padding:.2rem !important;
+  }
+  .nav-tab {
+    min-width:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.45rem .12rem !important;
+    font-size:.68rem !important;
+    line-height:1.2 !important;
+    white-space:normal !important;
+    text-align:center !important;
+    justify-content:center !important;
+  }
+  .lang-selector {
+    align-self:center !important;
+    max-width:100% !important;
+  }
+  .page-view,
+  .app-container, .hazard-container, .downloadables-container {
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .app-header, .hazard-header, .downloadables-header {
+    box-sizing:border-box !important;
+    margin-top:0 !important;
+  }
+}
+</style>
+</head><body class="export-document ${isRtl ? "rtl" : ""} ${isZh ? "zh" : ""}"><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${bodyHtml}<div class="footer"><span class="export-brand"><span class="export-brand-mark">S</span> Safechain HACCP</span> · ${isRtl ? 'HACCP لسلامة الغذاء' : 'HACCP Food Safety'} · ${generatedLabel}</div></body></html>`;
                 buildPdfFromHtml(pdfHtml, fileName + '.pdf');
             }
         }
@@ -2249,7 +2459,77 @@ html, body { max-width:100%; overflow-x:hidden !important; }
                     }
                 });
                 const generatedLabel = isRtl ? 'وثيقة مُنشأة' : 'Generated document';
-                const pdfHtml = `<!DOCTYPE html><html dir="${dir}"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"><style>@page { size: A4 portrait; margin: 1cm; } * { box-sizing: border-box; } body { font-family: ${fontFamily}; font-size: 10pt; color: #1d3b2f; direction: ${dir}; margin: 0; padding: 0; background: white; line-height: 1.4; } .header-bar { background: #1d3b2f; color: #ffffff; padding: 12pt 15pt; border-bottom: 4pt solid #f5b342; margin-bottom: 14pt; text-align: ${textAlign}; } .header-bar h1 { color: #f5b342; font-size: 16pt; line-height: 1.55; margin: 0 0 7pt 0; font-weight: bold; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .header-bar .sub { color: #ffffff; font-size: 10pt; line-height: 1.6; margin: 0; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .footer { margin-top: 14pt; padding-top: 6pt; border-top: 1pt solid #e6edf4; text-align: center; color: #7a94a8; font-size: 8pt; }</style></head><body><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${bodyHtml}<div class="footer"><span class="export-brand"><span class="export-brand-mark">S</span> Safechain HACCP</span> · ${isRtl ? 'HACCP لسلامة الغذاء' : 'HACCP Food Safety'} · ${generatedLabel}</div></body></html>`;
+                const pdfHtml = `<!DOCTYPE html><html dir="${dir}"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"><style>@page { size: A4 portrait; margin: 1cm; } * { box-sizing: border-box; } body { font-family: ${fontFamily}; font-size: 10pt; color: #1d3b2f; direction: ${dir}; margin: 0; padding: 0; background: white; line-height: 1.4; } .header-bar { background: #1d3b2f; color: #ffffff; padding: 12pt 15pt; border-bottom: 4pt solid #f5b342; margin-bottom: 14pt; text-align: ${textAlign}; } .header-bar h1 { color: #f5b342; font-size: 16pt; line-height: 1.55; margin: 0 0 7pt 0; font-weight: bold; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .header-bar .sub { color: #ffffff; font-size: 10pt; line-height: 1.6; margin: 0; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .footer { margin-top: 14pt; padding-top: 6pt; border-top: 1pt solid #e6edf4; text-align: center; color: #7a94a8; font-size: 8pt; }</style>
+<style id="mobile-header-no-overlap">
+@media (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
+  body { padding:0 8px 16px !important; }
+  .top-nav {
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:100% !important;
+    margin:0 -8px 16px !important;
+    width:calc(100% + 16px) !important;
+    z-index:1000 !important;
+  }
+  .top-nav-inner {
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.55rem .6rem .7rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.5rem !important;
+  }
+  .nav-brand {
+    width:100% !important;
+    justify-content:center !important;
+    min-height:28px !important;
+  }
+  .nav-right {
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.45rem !important;
+  }
+  .nav-tabs {
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:.2rem !important;
+    padding:.2rem !important;
+  }
+  .nav-tab {
+    min-width:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.45rem .12rem !important;
+    font-size:.68rem !important;
+    line-height:1.2 !important;
+    white-space:normal !important;
+    text-align:center !important;
+    justify-content:center !important;
+  }
+  .lang-selector {
+    align-self:center !important;
+    max-width:100% !important;
+  }
+  .page-view,
+  .app-container, .hazard-container, .downloadables-container {
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .app-header, .hazard-header, .downloadables-header {
+    box-sizing:border-box !important;
+    margin-top:0 !important;
+  }
+}
+</style>
+</head><body><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${bodyHtml}<div class="footer"><span class="export-brand"><span class="export-brand-mark">S</span> Safechain HACCP</span> · ${isRtl ? 'HACCP لسلامة الغذاء' : 'HACCP Food Safety'} · ${generatedLabel}</div></body></html>`;
                 buildPdfFromHtml(pdfHtml, fileName + '.pdf');
             }
         }
@@ -2821,6 +3101,76 @@ html, body { max-width:100%; overflow-x:hidden !important; }
   .tab-content, .main-content, .content, .page-content { position: relative !important; z-index: 1; }
   .tab-bar, .main-tabs, .nav-tabs { margin-bottom: 18px !important; }
   .tab-pane, .tab-content > div { scroll-margin-top: 0; }
+}
+</style>
+
+<style id="mobile-header-no-overlap">
+@media (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
+  body { padding:0 8px 16px !important; }
+  .top-nav {
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    width:100% !important;
+    margin:0 -8px 16px !important;
+    width:calc(100% + 16px) !important;
+    z-index:1000 !important;
+  }
+  .top-nav-inner {
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.55rem .6rem .7rem !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.5rem !important;
+  }
+  .nav-brand {
+    width:100% !important;
+    justify-content:center !important;
+    min-height:28px !important;
+  }
+  .nav-right {
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:.45rem !important;
+  }
+  .nav-tabs {
+    width:100% !important;
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:.2rem !important;
+    padding:.2rem !important;
+  }
+  .nav-tab {
+    min-width:0 !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    padding:.45rem .12rem !important;
+    font-size:.68rem !important;
+    line-height:1.2 !important;
+    white-space:normal !important;
+    text-align:center !important;
+    justify-content:center !important;
+  }
+  .lang-selector {
+    align-self:center !important;
+    max-width:100% !important;
+  }
+  .page-view,
+  .app-container, .hazard-container, .downloadables-container {
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .app-header, .hazard-header, .downloadables-header {
+    box-sizing:border-box !important;
+    margin-top:0 !important;
+  }
 }
 </style>
 </head><body><div style="background:#1d3b2f;color:#fff;padding:12pt 15pt;border-bottom:4pt solid #f5b342;margin-bottom:12pt;"><h1 style="color:#f5b342;font-size:16pt;line-height:1.25;margin:0 0 5pt 0;">Safechain HACCP Plan</h1><p style="color:#fff;font-size:10pt;margin:0;">Food safety HACCP</p></div>${bodyHtml}<div style="margin-top:24pt;padding-top:8pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;">Safechain HACCP · HACCP Food Safety</div></body></html>`;
