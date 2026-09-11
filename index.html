@@ -2813,7 +2813,17 @@ html, body { max-width:100%; overflow-x:hidden !important; }
                     fields.forEach(f => { bodyHtml += `<tr><td style="border:1pt solid #c9d4dc;padding:5pt 8pt;background:#f7fafc;font-weight:bold;color:#1f4052;width:34%;">${escapeHtml(f[0])}</td><td style="border:1pt solid #c9d4dc;padding:5pt 8pt;color:#1d3b2f;">${escapeHtml(String(f[1]))}</td></tr>`; });
                     bodyHtml += `</table>`;
                 });
-                const html = `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Safechain HACCP Plan</title><style>@page { size: A4 portrait; margin: 1.8cm 1.6cm; } body { font-family: Arial, sans-serif; font-size: 10pt; color: #1d3b2f; line-height: 1.4; }</style></head><body><div style="background:#1d3b2f;color:#fff;padding:12pt 15pt;border-bottom:4pt solid #f5b342;margin-bottom:12pt;"><h1 style="color:#f5b342;font-size:16pt;line-height:1.25;margin:0 0 5pt 0;">Safechain HACCP Plan</h1><p style="color:#fff;font-size:10pt;margin:0;">Food safety HACCP</p></div>${bodyHtml}<div style="margin-top:24pt;padding-top:8pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;">Safechain HACCP · HACCP Food Safety</div></body></html>`;
+                const html = `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Safechain HACCP Plan</title><style>@page { size: A4 portrait; margin: 1.8cm 1.6cm; } body { font-family: Arial, sans-serif; font-size: 10pt; color: #1d3b2f; line-height: 1.4; }</style>
+<style>
+@media (max-width: 600px){
+  .app-header, header, .top-header { position: relative !important; z-index: 10; }
+  .app-header + *, header + *, .top-header + * { margin-top: 0 !important; }
+  .tab-content, .main-content, .content, .page-content { position: relative !important; z-index: 1; }
+  .tab-bar, .main-tabs, .nav-tabs { margin-bottom: 18px !important; }
+  .tab-pane, .tab-content > div { scroll-margin-top: 0; }
+}
+</style>
+</head><body><div style="background:#1d3b2f;color:#fff;padding:12pt 15pt;border-bottom:4pt solid #f5b342;margin-bottom:12pt;"><h1 style="color:#f5b342;font-size:16pt;line-height:1.25;margin:0 0 5pt 0;">Safechain HACCP Plan</h1><p style="color:#fff;font-size:10pt;margin:0;">Food safety HACCP</p></div>${bodyHtml}<div style="margin-top:24pt;padding-top:8pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;">Safechain HACCP · HACCP Food Safety</div></body></html>`;
                 const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement('a'); link.href = url; link.download = 'SafeControl_HACCP_' + new Date().toISOString().slice(0, 10) + '.doc';
