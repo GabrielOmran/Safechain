@@ -492,254 +492,218 @@
     }
 
 </style>
-<style id="final-mobile-and-arabic-fix">
-/* ===== Final mobile navigation fit ===== */
-html, body { max-width:100%; overflow-x:hidden !important; }
+
+<style id="responsive-layout-clean">
+/* Clean responsive layout: preserve the desktop design, turn the phone into a simple vertical flow. */
+html, body { max-width:100%; overflow-x:hidden; }
 @media (max-width: 600px) {
-  body { padding: 92px 8px 12px !important; }
-  .top-nav-inner {
-    width:100%; max-width:100%; padding:.45rem .55rem !important;
-    gap:.4rem !important; display:flex !important; flex-direction:column !important;
-    align-items:stretch !important;
+  body { width:100%; min-width:0; margin:0; padding:0; overflow-x:hidden; display:flex !important; flex-direction:column !important; align-items:stretch !important; justify-content:flex-start !important; }
+  .top-nav {
+    position:relative !important; top:auto !important; left:auto !important; right:auto !important;
+    width:100% !important; margin:0 !important; box-sizing:border-box;
   }
-  .nav-brand { justify-content:center; font-size:.88rem !important; min-height:26px; }
-  .nav-brand i { font-size:1.05rem !important; }
-  .nav-brand-text small { display:none; }
-  .nav-right { width:100% !important; display:flex !important; flex-direction:column !important;
-    align-items:stretch !important; gap:.35rem !important; }
+  .top-nav-inner {
+    width:100% !important; max-width:none !important; box-sizing:border-box;
+    padding:12px 14px !important; display:flex !important; flex-direction:column !important;
+    align-items:stretch !important; gap:10px !important;
+  }
+  .nav-brand { width:100% !important; justify-content:center !important; margin:0 !important; }
+  .nav-right { width:100% !important; display:flex !important; flex-direction:column !important; gap:8px !important; }
+  /* Keep the three tabs on one compact row, like the desktop navigation. */
   .nav-tabs {
-    width:100% !important; display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:.18rem !important; padding:.18rem !important; border-radius:14px !important;
-    min-width:0 !important;
+    width:100% !important; display:flex !important; flex-direction:row !important;
+    flex-wrap:nowrap !important; gap:4px !important; padding:4px !important; box-sizing:border-box;
   }
   .nav-tab {
-    min-width:0 !important; width:100% !important; max-width:100% !important;
-    padding:.38rem .18rem !important; font-size:.67rem !important;
-    line-height:1.15 !important; white-space:normal !important;
-    justify-content:center !important; text-align:center !important;
-    gap:.18rem !important; border-radius:10px !important;
-    overflow-wrap:anywhere !important;
+    flex:1 1 0 !important; width:auto !important; min-width:0 !important; max-width:none !important;
+    box-sizing:border-box; padding:8px 5px !important; font-size:.72rem !important;
+    line-height:1.15 !important; white-space:nowrap !important; overflow:hidden;
+    text-overflow:ellipsis; justify-content:center !important; gap:4px !important;
   }
-  .nav-tab i { font-size:.72rem !important; flex:0 0 auto; }
-  .lang-selector { align-self:center; width:auto; max-width:100%; }
-  .lang-selector select { max-width:150px; }
+  .nav-tab i { flex:0 0 auto !important; font-size:.72rem !important; }
+  .lang-selector {
+    width:100% !important; box-sizing:border-box; justify-content:center !important;
+    align-self:stretch !important; margin:0 !important;
+  }
+  .lang-selector select { width:auto; max-width:100%; min-width:0; }
+
+  /* Each selected tab fills the phone; its internal desktop two-column grid becomes vertical. */
+  .page-view, .page-view.active {
+    width:100% !important; max-width:100% !important; min-width:0 !important;
+    margin:0 !important; padding:0 !important; box-sizing:border-box;
+    display:flex !important; flex-direction:column !important; align-items:stretch !important;
+    flex:0 0 auto !important;
+  }
+  .page-view:not(.active) { display:none !important; }
   .app-container, .hazard-container, .downloadables-container {
-    width:100% !important; max-width:100% !important; border-radius:18px !important;
+    width:100% !important; max-width:none !important; min-width:0 !important;
+    margin:0 !important; box-sizing:border-box; overflow:hidden;
   }
   .app-header, .hazard-header, .downloadables-header {
-    width:100% !important; max-width:100% !important; padding:1rem !important;
-    overflow:hidden !important;
+    width:100% !important; max-width:none !important; box-sizing:border-box;
+    padding:16px !important; margin:0 !important;
   }
-  .brand, .brand-text, .brand-title, .header-actions, .hazard-header > *, .downloadables-header > * {
-    min-width:0 !important; max-width:100% !important;
+  .app-header .brand, .app-header .header-actions,
+  .hazard-header > *, .downloadables-header > * { min-width:0 !important; max-width:100% !important; }
+  .header-actions { margin-left:0 !important; }
+
+  /* Builder panels are one after another, never side-by-side on a phone. */
+  .main-grid {
+    width:100% !important; min-width:0 !important; display:flex !important;
+    flex-direction:column !important; gap:0 !important; box-sizing:border-box;
   }
-  .brand-title, .downloadables-header h1 { overflow-wrap:anywhere; }
+  .main-grid > .panel-wrapper {
+    width:100% !important; max-width:none !important; min-width:0 !important;
+    box-sizing:border-box; border-right:0 !important;
+    border-bottom:1px solid #e6edf4 !important;
+  }
+  .main-grid > .panel-wrapper:last-child { border-bottom:0 !important; }
+  .panel-wrapper { padding:18px 16px !important; }
+  .card-box { width:100% !important; max-width:none !important; min-width:0 !important; box-sizing:border-box; }
+
+  /* Controls use the phone width without creating a second horizontal layout. */
+  .form-row { grid-template-columns:1fr !important; }
+  .form-group, input, select, textarea, button { min-width:0; max-width:100%; box-sizing:border-box; }
+  .download-grid { grid-template-columns:1fr !important; }
+
+  /* Flowchart/workspaces stay inside the viewport. */
+  .flowchart-container, .flowchart-canvas, .flowchart-workspace,
+  .flowchart-board, .flowchart-editor { max-width:100% !important; box-sizing:border-box; }
+  .flowchart-canvas, .flowchart-board { overflow:auto !important; }
+}
+@media (min-width:601px) and (max-width:900px) {
+  html, body { max-width:100%; overflow-x:hidden; }
+  .main-grid { grid-template-columns:1fr !important; }
 }
 
-/* ===== Arabic PDF typography: match normal website spacing ===== */
-.export-document.rtl,
-.export-document.rtl * {
-  font-family:'Cairo', sans-serif !important;
-  letter-spacing:0 !important;
-  word-spacing:normal !important;
-  font-kerning:normal !important;
+/* Arabic PDF: same natural spacing as the website, with Cairo only. */
+.export-document.rtl, .export-document.rtl * {
+  font-family:'Cairo',sans-serif !important;
+  letter-spacing:0 !important; word-spacing:normal !important; font-kerning:normal !important;
   text-rendering:optimizeLegibility !important;
 }
-.export-document.rtl {
-  direction:rtl !important;
-  unicode-bidi:plaintext;
-}
+.export-document.rtl { direction:rtl !important; }
 .export-document.rtl .header-bar,
 .export-document.rtl .header-bar h1,
 .export-document.rtl .header-bar .sub,
 .export-document.rtl .facility-line {
-  direction:rtl !important;
-  unicode-bidi:plaintext !important;
-  text-align:right !important;
-  word-spacing:normal !important;
-  letter-spacing:0 !important;
-  white-space:normal !important;
-  overflow-wrap:normal !important;
+  direction:rtl !important; text-align:right !important; letter-spacing:0 !important;
+  word-spacing:normal !important; white-space:normal !important; overflow-wrap:normal !important;
   word-break:keep-all !important;
 }
 .export-document.rtl .header-bar h1 {
-  font-family:'Cairo',sans-serif !important;
-  font-size:16pt !important;
-  font-weight:700 !important;
-  line-height:1.65 !important;
-  margin:0 0 6pt !important;
-  padding:0 !important;
+  font-family:'Cairo',sans-serif !important; font-size:16pt !important; font-weight:700 !important;
+  line-height:1.5 !important; margin:0 0 6pt !important; padding:0 !important;
 }
-.export-document.rtl .header-bar .sub,
-.export-document.rtl .facility-line {
-  font-size:10pt !important;
-  line-height:1.65 !important;
-}
-.export-document.rtl td,
-.export-document.rtl th {
-  direction:rtl !important;
-  unicode-bidi:plaintext !important;
-  font-family:'Cairo',sans-serif !important;
-  letter-spacing:0 !important;
-  word-spacing:normal !important;
-  line-height:1.65 !important;
+.export-document.rtl .header-bar .sub, .export-document.rtl .facility-line,
+.export-document.rtl td, .export-document.rtl th {
+  font-family:'Cairo',sans-serif !important; letter-spacing:0 !important; word-spacing:normal !important;
+  line-height:1.5 !important; direction:rtl !important;
 }
 </style>
 
-<style id="mobile-header-no-overlap">
+<style id="flowchart-mobile-final">
+/* Flowchart modal must sit above the app navigation/header on every device. */
+#flowModal.modal-overlay { z-index: 2000 !important; }
+#flowModal .modal-content { z-index: 2001 !important; }
+
+/* Final mobile flowchart layout: compact controls + viewport-sized workspace. */
 @media (max-width: 600px) {
-  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
-  body { padding:0 8px 16px !important; }
-  .top-nav {
-    position:relative !important;
-    top:auto !important;
-    left:auto !important;
-    width:100% !important;
-    margin:0 -8px 16px !important;
-    width:calc(100% + 16px) !important;
-    z-index:1000 !important;
+  #flowModal.modal-overlay {
+    padding: 8px !important;
+    align-items: center !important;
+    overflow: hidden !important;
   }
-  .top-nav-inner {
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.55rem .6rem .7rem !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.5rem !important;
-  }
-  .nav-brand {
-    width:100% !important;
-    justify-content:center !important;
-    min-height:28px !important;
-  }
-  .nav-right {
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.45rem !important;
-  }
-  .nav-tabs {
-    width:100% !important;
-    box-sizing:border-box !important;
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:.2rem !important;
-    padding:.2rem !important;
-  }
-  .nav-tab {
-    min-width:0 !important;
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.45rem .12rem !important;
-    font-size:.68rem !important;
-    line-height:1.2 !important;
-    white-space:normal !important;
-    text-align:center !important;
-    justify-content:center !important;
-  }
-  .lang-selector {
-    align-self:center !important;
-    max-width:100% !important;
-  }
-  .page-view,
-  .app-container, .hazard-container, .downloadables-container {
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-  .app-header, .hazard-header, .downloadables-header {
-    box-sizing:border-box !important;
-    margin-top:0 !important;
-  }
-}
-</style>
-<style id="mobile-nav-stacked-final">
-@media (max-width: 600px) {
-  .top-nav-inner {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+  #flowModal .modal-content {
     width: 100% !important;
+    max-width: 100% !important;
+    height: calc(100dvh - 16px) !important;
+    max-height: calc(100dvh - 16px) !important;
+    min-height: 0 !important;
+    padding: 10px !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
-  .top-nav .nav-brand {
-    display: flex !important;
+  #flowModal .modal-header {
+    display: block !important;
     width: 100% !important;
-    justify-content: center !important;
-    margin-bottom: 10px !important;
+    margin: 0 0 8px !important;
+    padding: 0 38px 0 0 !important;
+    box-sizing: border-box !important;
   }
-  .top-nav .nav-right {
-    display: flex !important;
-    flex-direction: column !important;
+  #flowModal .modal-header h3 {
     width: 100% !important;
-    align-items: stretch !important;
+    max-width: 100% !important;
+    margin: 0 0 8px !important;
+    font-size: .95rem !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
-  .top-nav .nav-tabs {
-    order: 1 !important;
+  #flowModal .modal-header .header-btns {
     width: 100% !important;
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+    align-items: stretch !important;
   }
-  .top-nav .lang-selector {
-    order: 2 !important;
-    align-self: center !important;
-    margin-top: 8px !important;
+  #flowModal .modal-header .btn,
+  #flowModal .download-wrap {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 34px !important;
+    box-sizing: border-box !important;
   }
-}
-</style>
-<style id="mobile-final-vertical-flow">
-@media (max-width: 600px) {
-  .top-nav-inner {
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    justify-content:flex-start !important;
-    width:100% !important;
-    box-sizing:border-box !important;
+  #flowModal .modal-header .btn {
+    padding: 0 3px !important;
+    border-radius: 9px !important;
+    font-size: .63rem !important;
+    gap: 3px !important;
+    white-space: nowrap !important;
   }
-  .nav-brand { order:1 !important; width:100% !important; }
-  .nav-right {
-    order:2 !important;
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    justify-content:flex-start !important;
-    gap:.55rem !important;
+  #flowModal .modal-header .btn .btn-label {
+    display: inline !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
-  .nav-tabs {
-    order:1 !important;
-    width:100% !important;
-    box-sizing:border-box !important;
+  #flowModal .modal-header .btn i { font-size: .72rem !important; flex: 0 0 auto !important; }
+  #flowModal .download-wrap { display: block !important; }
+  #flowModal .download-menu { right: 0 !important; top: 39px !important; min-width: 150px !important; }
+  #flowModal .modal-close {
+    top: 8px !important;
+    right: 8px !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: .9rem !important;
   }
-  .lang-selector {
-    order:2 !important;
-    align-self:center !important;
-    margin:0 auto !important;
+  #flowModal .modal-body {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
   }
-  .page-view {
-    display:none !important;
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-    clear:both !important;
+  #flowModal .modal-body canvas {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
   }
-  .page-view.active {
-    display:block !important;
-    width:100% !important;
-    max-width:100% !important;
-    margin:0 !important;
-    padding:0 !important;
-  }
-  .app-container, .hazard-container, .downloadables-container {
-    width:100% !important;
-    max-width:100% !important;
-    margin:0 !important;
-    box-sizing:border-box !important;
+  #flowModal .modal-hint {
+    margin-top: 6px !important;
+    padding-top: 5px !important;
+    font-size: .62rem !important;
+    line-height: 1.25 !important;
+    flex-shrink: 0 !important;
   }
 }
 </style>
+
 </head>
 <body>
 
@@ -2059,75 +2023,6 @@ html, body { max-width:100%; overflow-x:hidden !important; }
             const fontImport=isRtl?'<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">':isZh?'<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">':'';
             return `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40" dir="${dir}"><head><meta charset="utf-8"><title>${escapeHtml(template.title)}</title>${fontImport}<style>
 @page{size:A4;margin:0}*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}body{font-family:${font};font-size:10pt;color:#1d3b2f;direction:${dir};line-height:${isRtl?'1.65':'1.4'};padding:42pt 42pt 36pt;max-width:794px;margin:0 auto}h1,h2,p,table{font-family:${font}}.header-bar{background:#1d3b2f;color:#fff;padding:11pt 13pt;border-bottom:4pt solid #f5b342;margin:0 0 11pt;text-align:${align};width:100%;overflow:hidden}.header-bar h1{color:#f5b342;font-size:16pt;line-height:1.55;margin:0 0 6pt;font-weight:bold;overflow-wrap:normal;word-break:normal;white-space:normal;letter-spacing:normal;word-spacing:normal}.header-bar .sub{color:#fff;font-size:10pt;line-height:1.65;margin:0;overflow-wrap:normal;word-break:normal;white-space:normal;letter-spacing:normal;word-spacing:normal}.facility-line{font-size:10pt;color:#fff;margin:5pt 0 0;line-height:1.45;overflow-wrap:anywhere}h2{font-size:12pt;color:#1d3b2f;border-bottom:2pt solid #f5b342;padding:0 0 4pt;margin:12pt 0 6pt;line-height:1.35;overflow-wrap:anywhere}.body-text{font-size:10pt;line-height:${isRtl?'1.75':'1.45'};margin:0 0 7pt;overflow-wrap:anywhere}.form-table,.data-table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:${font};font-size:10pt;margin:0 0 8pt;direction:${dir}}.form-table td,.data-table td,.data-table th{border:1pt solid #c9d4dc;padding:5pt 5pt;line-height:${isRtl?'1.55':'1.35'};vertical-align:middle;word-break:break-word;overflow-wrap:anywhere;white-space:normal}.form-table .field-label{background:#f7fafc;font-weight:bold;color:#1f4052;width:35%}.data-table th{background:#1d3b2f;color:#f5b342;border-color:#1d3b2f;font-weight:bold;text-align:${align}}.data-table td{text-align:${align}}tr{page-break-inside:avoid;min-height:30pt} .form-table td{min-height:34pt;height:34pt} .data-table td{min-height:30pt;height:30pt} .data-table th{min-height:34pt;height:34pt} thead{display:table-header-group}.footer{margin-top:12pt;padding-top:6pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;line-height:1.3;overflow-wrap:anywhere}</style>
-<style id="mobile-header-no-overlap">
-@media (max-width: 600px) {
-  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
-  body { padding:0 8px 16px !important; }
-  .top-nav {
-    position:relative !important;
-    top:auto !important;
-    left:auto !important;
-    width:100% !important;
-    margin:0 -8px 16px !important;
-    width:calc(100% + 16px) !important;
-    z-index:1000 !important;
-  }
-  .top-nav-inner {
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.55rem .6rem .7rem !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.5rem !important;
-  }
-  .nav-brand {
-    width:100% !important;
-    justify-content:center !important;
-    min-height:28px !important;
-  }
-  .nav-right {
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.45rem !important;
-  }
-  .nav-tabs {
-    width:100% !important;
-    box-sizing:border-box !important;
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:.2rem !important;
-    padding:.2rem !important;
-  }
-  .nav-tab {
-    min-width:0 !important;
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.45rem .12rem !important;
-    font-size:.68rem !important;
-    line-height:1.2 !important;
-    white-space:normal !important;
-    text-align:center !important;
-    justify-content:center !important;
-  }
-  .lang-selector {
-    align-self:center !important;
-    max-width:100% !important;
-  }
-  .page-view,
-  .app-container, .hazard-container, .downloadables-container {
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-  .app-header, .hazard-header, .downloadables-header {
-    box-sizing:border-box !important;
-    margin-top:0 !important;
-  }
-}
-</style>
 </head><body><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${body}<div class="footer">Safechain HACCP · ${generated}</div></body></html>`;
         }
 
@@ -2383,75 +2278,6 @@ html, body { max-width:100%; overflow-x:hidden !important; }
                 });
                 const generatedLabel = isRtl ? 'وثيقة مُنشأة' : (lang === 'pl' ? 'Wygenerowany dokument' : lang === 'es' ? 'Documento generado' : lang === 'fr' ? 'Document généré' : lang === 'de' ? 'Generiertes Dokument' : 'Generated document');
                 const pdfHtml = `<!DOCTYPE html><html dir="${dir}"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"><style>@page { size: A4 portrait; margin: 1.8cm 1.6cm; } * { box-sizing: border-box; } body { font-family: ${fontFamily}; font-size: 10pt; color: #1d3b2f; direction: ${dir}; margin: 0; padding: 0; background: white; line-height: ${isRtl ? '1.8' : '1.4'}; } .export-document.rtl td,.export-document.rtl th{word-break:break-word;overflow-wrap:anywhere;line-height:1.8;letter-spacing:0;word-spacing:normal;font-family:'Cairo',sans-serif;font-size:10pt}.export-document.rtl table{table-layout:fixed} .header-bar { background: #1d3b2f; color: #ffffff; padding: 12pt 15pt; border-bottom: 4pt solid #f5b342; margin-bottom: 14pt; text-align: ${textAlign}; } .header-bar h1 { color: #f5b342; font-size: 16pt; line-height: 1.55; margin: 0 0 7pt 0; font-weight: bold; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .header-bar .sub { color: #ffffff; font-size: 10pt; line-height: 1.6; margin: 0; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .footer { margin-top: 14pt; padding-top: 6pt; border-top: 1pt solid #e6edf4; text-align: center; color: #7a94a8; font-size: 8pt; }</style>
-<style id="mobile-header-no-overlap">
-@media (max-width: 600px) {
-  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
-  body { padding:0 8px 16px !important; }
-  .top-nav {
-    position:relative !important;
-    top:auto !important;
-    left:auto !important;
-    width:100% !important;
-    margin:0 -8px 16px !important;
-    width:calc(100% + 16px) !important;
-    z-index:1000 !important;
-  }
-  .top-nav-inner {
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.55rem .6rem .7rem !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.5rem !important;
-  }
-  .nav-brand {
-    width:100% !important;
-    justify-content:center !important;
-    min-height:28px !important;
-  }
-  .nav-right {
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.45rem !important;
-  }
-  .nav-tabs {
-    width:100% !important;
-    box-sizing:border-box !important;
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:.2rem !important;
-    padding:.2rem !important;
-  }
-  .nav-tab {
-    min-width:0 !important;
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.45rem .12rem !important;
-    font-size:.68rem !important;
-    line-height:1.2 !important;
-    white-space:normal !important;
-    text-align:center !important;
-    justify-content:center !important;
-  }
-  .lang-selector {
-    align-self:center !important;
-    max-width:100% !important;
-  }
-  .page-view,
-  .app-container, .hazard-container, .downloadables-container {
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-  .app-header, .hazard-header, .downloadables-header {
-    box-sizing:border-box !important;
-    margin-top:0 !important;
-  }
-}
-</style>
 </head><body class="export-document ${isRtl ? "rtl" : ""} ${isZh ? "zh" : ""}"><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${bodyHtml}<div class="footer"><span class="export-brand"><span class="export-brand-mark">S</span> Safechain HACCP</span> · ${isRtl ? 'HACCP لسلامة الغذاء' : 'HACCP Food Safety'} · ${generatedLabel}</div></body></html>`;
                 buildPdfFromHtml(pdfHtml, fileName + '.pdf');
             }
@@ -2545,75 +2371,6 @@ html, body { max-width:100%; overflow-x:hidden !important; }
                 });
                 const generatedLabel = isRtl ? 'وثيقة مُنشأة' : 'Generated document';
                 const pdfHtml = `<!DOCTYPE html><html dir="${dir}"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"><style>@page { size: A4 portrait; margin: 1cm; } * { box-sizing: border-box; } body { font-family: ${fontFamily}; font-size: 10pt; color: #1d3b2f; direction: ${dir}; margin: 0; padding: 0; background: white; line-height: 1.4; } .header-bar { background: #1d3b2f; color: #ffffff; padding: 12pt 15pt; border-bottom: 4pt solid #f5b342; margin-bottom: 14pt; text-align: ${textAlign}; } .header-bar h1 { color: #f5b342; font-size: 16pt; line-height: 1.55; margin: 0 0 7pt 0; font-weight: bold; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .header-bar .sub { color: #ffffff; font-size: 10pt; line-height: 1.6; margin: 0; overflow-wrap: normal; word-break: normal; white-space: normal; letter-spacing: normal; word-spacing: normal; } .footer { margin-top: 14pt; padding-top: 6pt; border-top: 1pt solid #e6edf4; text-align: center; color: #7a94a8; font-size: 8pt; }</style>
-<style id="mobile-header-no-overlap">
-@media (max-width: 600px) {
-  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
-  body { padding:0 8px 16px !important; }
-  .top-nav {
-    position:relative !important;
-    top:auto !important;
-    left:auto !important;
-    width:100% !important;
-    margin:0 -8px 16px !important;
-    width:calc(100% + 16px) !important;
-    z-index:1000 !important;
-  }
-  .top-nav-inner {
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.55rem .6rem .7rem !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.5rem !important;
-  }
-  .nav-brand {
-    width:100% !important;
-    justify-content:center !important;
-    min-height:28px !important;
-  }
-  .nav-right {
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.45rem !important;
-  }
-  .nav-tabs {
-    width:100% !important;
-    box-sizing:border-box !important;
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:.2rem !important;
-    padding:.2rem !important;
-  }
-  .nav-tab {
-    min-width:0 !important;
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.45rem .12rem !important;
-    font-size:.68rem !important;
-    line-height:1.2 !important;
-    white-space:normal !important;
-    text-align:center !important;
-    justify-content:center !important;
-  }
-  .lang-selector {
-    align-self:center !important;
-    max-width:100% !important;
-  }
-  .page-view,
-  .app-container, .hazard-container, .downloadables-container {
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-  .app-header, .hazard-header, .downloadables-header {
-    box-sizing:border-box !important;
-    margin-top:0 !important;
-  }
-}
-</style>
 </head><body><div class="header-bar"><h1>${escapeHtml(template.title)}</h1><p class="sub">${escapeHtml(template.subtitle)}</p>${facilityLine}</div>${bodyHtml}<div class="footer"><span class="export-brand"><span class="export-brand-mark">S</span> Safechain HACCP</span> · ${isRtl ? 'HACCP لسلامة الغذاء' : 'HACCP Food Safety'} · ${generatedLabel}</div></body></html>`;
                 buildPdfFromHtml(pdfHtml, fileName + '.pdf');
             }
@@ -2783,8 +2540,8 @@ html, body { max-width:100%; overflow-x:hidden !important; }
         function resizeCanvas() {
             const rect = modalBody.getBoundingClientRect();
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            canvas.width = Math.max(700, Math.floor(rect.width * dpr));
-            canvas.height = Math.max(450, Math.floor(rect.height * dpr));
+            canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+            canvas.height = Math.max(1, Math.floor(rect.height * dpr));
             canvas.style.width = '100%'; canvas.style.height = '100%';
             gridPositions = getGridPositions();
             if (flowNodes.length > 0) syncFlowNodes();
@@ -3189,75 +2946,6 @@ html, body { max-width:100%; overflow-x:hidden !important; }
 }
 </style>
 
-<style id="mobile-header-no-overlap">
-@media (max-width: 600px) {
-  html, body { width:100%; max-width:100%; overflow-x:hidden !important; }
-  body { padding:0 8px 16px !important; }
-  .top-nav {
-    position:relative !important;
-    top:auto !important;
-    left:auto !important;
-    width:100% !important;
-    margin:0 -8px 16px !important;
-    width:calc(100% + 16px) !important;
-    z-index:1000 !important;
-  }
-  .top-nav-inner {
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.55rem .6rem .7rem !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.5rem !important;
-  }
-  .nav-brand {
-    width:100% !important;
-    justify-content:center !important;
-    min-height:28px !important;
-  }
-  .nav-right {
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    gap:.45rem !important;
-  }
-  .nav-tabs {
-    width:100% !important;
-    box-sizing:border-box !important;
-    display:grid !important;
-    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-    gap:.2rem !important;
-    padding:.2rem !important;
-  }
-  .nav-tab {
-    min-width:0 !important;
-    width:100% !important;
-    box-sizing:border-box !important;
-    padding:.45rem .12rem !important;
-    font-size:.68rem !important;
-    line-height:1.2 !important;
-    white-space:normal !important;
-    text-align:center !important;
-    justify-content:center !important;
-  }
-  .lang-selector {
-    align-self:center !important;
-    max-width:100% !important;
-  }
-  .page-view,
-  .app-container, .hazard-container, .downloadables-container {
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-  }
-  .app-header, .hazard-header, .downloadables-header {
-    box-sizing:border-box !important;
-    margin-top:0 !important;
-  }
-}
-</style>
 </head><body><div style="background:#1d3b2f;color:#fff;padding:12pt 15pt;border-bottom:4pt solid #f5b342;margin-bottom:12pt;"><h1 style="color:#f5b342;font-size:16pt;line-height:1.25;margin:0 0 5pt 0;">Safechain HACCP Plan</h1><p style="color:#fff;font-size:10pt;margin:0;">Food safety HACCP</p></div>${bodyHtml}<div style="margin-top:24pt;padding-top:8pt;border-top:1pt solid #e6edf4;text-align:center;color:#7a94a8;font-size:8pt;">Safechain HACCP · HACCP Food Safety</div></body></html>`;
                 const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
                 const url = URL.createObjectURL(blob);
